@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "icon" type = "image/x-icon" href = "PodCodar.PNG">
+    <title>Prime Word</title>
+</head>
+<body>
+    <center>
+    <h2>Logic Problem</h2>
+    <h1>Palavras Primas</h1>
+    <p>Enter a word and let's check if it is prime:</p>
+    
+        <input id="palavra" maxlength="20" onkeypress="return lettersOnly(event);"/>
+        <button onclick="wordNumbers()">Testar</button>
+        <p id="result"></p>
+    
+    
+    <script src="palavraPrima.js"></script> 
+    <script>
+        function lettersOnly(evt) {
+            evt = (evt) ? evt : event;
+            var charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode :
+                ((evt.which) ? evt.which : 0));
+            if (charCode > 31 && (charCode < 65 || charCode > 90) &&
+                (charCode < 97 || charCode > 122)) {
+                alert("Enter letters only.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+    </center>
+</body>
+</html>
