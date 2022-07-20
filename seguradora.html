@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "icon" type = "image/x-icon" href = "PodCodar.PNG">
+    <title>Lógica 04</title>
+</head>
+<body>
+    <center>
+    <script src="seguradora.js"></script>
+    
+    <div>
+        <h2>Exercício de Lógica 04</h2>
+        <h1>Cálculo de seguro</h1>
+    </div>
+    
+    <div>
+    <p>Selecione o sexo:
+        <input type="radio" name="sex" value="Masculino">Masculino
+        <input type="radio" name="sex" value="Feminino" checked>Feminino
+    </p>
+    </div>
+    
+    <div>
+        <p>Selecione o sexo:
+            <input type="radio" name="cobertura" value="Parcial">Parcial
+            <input type="radio" name="cobertura" value="Total" >Total
+        </p>
+    </div>
+
+    <div>
+        <p>Digite a idade:
+        <input id="age" type="number" >
+        </p>
+    </div>
+
+    <button onclick=calculoCobertura() >Calcular</button>
+    <p id="resultado"></p>
+        
+    </center>
+</body>
+</html>
