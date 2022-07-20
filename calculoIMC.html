@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "icon" type = "image/x-icon" href = "PodCodar.PNG">
+    <title>Logica 03 -  Calculo IMC</title>
+</head>
+
+<body>
+    <Center>
+   <h2>Problema de lógica 03</h2>
+   <h1>Cálculo IMC</h1>
+   
+        <p>Selecione o sexo:</p>
+        <form action="#n" name="theForm">
+            <label for="gender">Genero: </label>
+            <input type="radio" name="genderS" value="Masculino" checked> Masculino
+            <input type="radio" name="genderS" value="Feminino" > Feminino<br><br>
+        </form>
+    
+    <p>Digite o peso em kg:<input id="dataVal" name="peso_" type="number"></p> 
+    <p>Digite a altura em m:<input id="alturaS" name="altura_" type="number"></p>
+    
+    <button onclick=IMC() >Calcular</button>
+    <p id="resultado"></p>
+    </Center>
+    <script src="calculoIMC.js"> </script>
+</body>
+
+</html>
