@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro usuários</title>
+</head>
+<body>
+    <center>
+    <h2>Exercicio de lógica</h2>
+    <h1>Cadastro de usuários</h1>
+
+    <div>
+        <p>Nome: <input type="text" id="nome">
+        <p>Idade: <input type="number" id="idade"></p>
+        <p>Email: <input type="email" id="endEmail"></p>
+        <p>CPF:<input type="text" id="CPF" maxlength="11" /></p>
+        <input type="button" id="cadastro" value="Cadastrar usuário" onclick="cadastroUsuario()">
+        <input type="button" id="lista" value="Usuários" onclick="mostrarLista()">
+        <div id="result"></div> 
+    </div>
+
+    <script src="cadastro_usuários.js"></script>
+
+    </center>
+</body>
+</html>
