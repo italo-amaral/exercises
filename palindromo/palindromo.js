@@ -1,9 +1,16 @@
+const testeCase = ['ovo', 'A base do teto desaba', 'dois tigres tristes']
 const teste0 = "OvO";
 const teste1 = "A base DO teto desaba";
 const teste2 = "dois tigres tristes";
 
-function convertArray(arr){
-    arr = Array.from(arr.toLowerCase().replace(/ /g,"")); // elimina espaços em branco e letras maiusculas
+function convertArray(arr){ // elimina espaços em branco e letras maiusculas
+    if (arr instanceof Object){
+        for (let i = 0; i < arr.length; i++){
+            arr[i] = Array.from(arr[i].toLowerCase().replace(/ /g,""));
+        }
+    }else{
+        arr = Array.from(arr.toLowerCase().replace(/ /g,""));
+    }
     return arr
 }
 
@@ -29,6 +36,4 @@ function isPalindromo(text){
         return "Não é um palindromo"
     }
 }
-console.log(isPalindromo(teste0))
-console.log(isPalindromo(teste1))
-console.log(isPalindromo(teste2))
+console.log(convertArray(testeCase))
