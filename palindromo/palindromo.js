@@ -2,6 +2,7 @@ const testeCase = ['ovo', 'A base do teto desaba', 'dois tigres tristes']
 const teste0 = "OvO";
 const teste1 = "A base DO teto desaba";
 const teste2 = "dois tigres tristes";
+const teste3 = "A base Da teto desaba";
 
 function convertArray(arr){ // elimina espaços em branco e letras maiusculas
     if (arr instanceof Object){
@@ -17,23 +18,13 @@ function convertArray(arr){ // elimina espaços em branco e letras maiusculas
 function isPalindromo(text){
     text = convertArray(text)
     let arrayReverso = [];
-    for (let i = text.length - 1; i >= 0; i--){ //cria uma arrayReverso com os itens da array original de trás pra frente
-        arrayReverso.push(text[i]); 
-    }
-    let count = 0;
-    for (let x = 0; x < text.length; x++){ //testa se os itens das duas arrays são iguais, através de um contador
-        if (text[x] === arrayReverso[x]) { //se count += 1 -> não é palindromo
-            count += 0
-        }
-        else{
-            count += 1
+    for (let x = 0; x < text.length; x++){ 
+        arrayReverso.push(text[x]); //cria uma arrayReverso com os itens da array original de trás pra frente
+        if (text[text.length-1-x] !== arrayReverso[x]){ 
+            return 'não é um palindromo'
         }
     }
-    if (count === 0){ 
-        return "É um palindromo"
+    return "É um palindromo"
     }
-    else{
-        return "Não é um palindromo"
-    }
-}
-console.log(convertArray(testeCase))
+    
+console.log(isPalindromo(teste3))
