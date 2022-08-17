@@ -3,24 +3,48 @@ import pandas as pd
 import argparse
 
 parser = argparse.ArgumentParser(description="search for books in the collection 'Biblioteca Central de Ideias")
-parser.add_argument('-a', '--author', type=str, metavar='', help='search through author')
-parser.add_argument('-t', '--title', type=str, metavar='', help='search through title')
-parser.add_argument('-g', '--genre', type=str, metavar='', help='search through GENRE')
+parser.add_argument('-a', '--author', metavar='', help='search through AUTHOR (ex: ''Abnett, Dan'')')
+parser.add_argument('-t', '--title', metavar='', help='search through TITLE')
+parser.add_argument('-g', '--genre', metavar='', help='search through GENRE')
 args = parser.parse_args()
 
 MAX_ROWS = 100
 MAX_COLUMNS = 4
-WIDTH = 10000
+WIDTH = 1000
 pd.set_option('display.max_rows', MAX_ROWS)
 pd.set_option('display.max_columns', MAX_COLUMNS)
 pd.set_option('display.width', WIDTH)
 
-link = ['http://www.institutousiminas.com/wp-content/uploads/2020/08/Adm-Publica.-Servico-Social.xlsx',
-        'https://www.institutousiminas.com/wp-content/uploads/2020/08/Historia-e-Geografia.xlsx',
-        'https://www.institutousiminas.com/wp-content/uploads/2020/08/Administracao.xlsx',
-        'https://www.institutousiminas.com/wp-content/uploads/2020/08/Infantil-e-Juvenil.xlsx']
-link2 = ['http://www.institutousiminas.com/wp-content/uploads/2020/08/Adm-Publica.-Servico-Social.xlsx',
-        'https://www.institutousiminas.com/wp-content/uploads/2020/08/Historia-e-Geografia.xlsx']
+link_test = ['https://www.institutousiminas.com/wp-content/uploads/2020/08/Historia-e-Geografia.xlsx',
+    'https://www.institutousiminas.com/wp-content/uploads/2020/08/Administracao.xlsx',
+    'https://www.institutousiminas.com/wp-content/uploads/2020/08/Infantil-e-Juvenil.xlsx']
+
+link_geral = ['https://www.institutousiminas.com/wp-content/uploads/2020/08/Adm-Publica.-Servico-Social.xlsx', 
+'https://www.institutousiminas.com/wp-content/uploads/2020/08/areas-medicas.xlsx', 'https://www.institutousiminas.com/wp-content/uploads/2020/08/Administracao.xlsx',
+'https://www.institutousiminas.com/wp-content/uploads/2020/08/Assuntos-Diversos.xlsx',
+'https://www.institutousiminas.com/wp-content/uploads/2020/08/Biografias.xlsx',
+'https://www.institutousiminas.com/wp-content/uploads/2020/08/Ciencia-Politica.xlsx',
+'https://www.institutousiminas.com/wp-content/uploads/2020/08/Economia.xlsx',
+'https://www.institutousiminas.com/wp-content/uploads/2020/08/Educacao.xlsx',
+'https://www.institutousiminas.com/wp-content/uploads/2020/08/Filosofia.xlsx',
+'https://www.institutousiminas.com/wp-content/uploads/2020/08/Historia-e-Geografia.xlsx',
+'https://www.institutousiminas.com/wp-content/uploads/2020/08/Infantil-e-Juvenil.xlsx',
+'https://www.institutousiminas.com/wp-content/uploads/2020/08/Jornalismo.xlsx', 
+'https://www.institutousiminas.com/wp-content/uploads/2020/08/Literatura-Francesa.xlsx', 
+'https://www.institutousiminas.com/wp-content/uploads/2020/08/Literatura-Geral.xlsx', 
+'https://www.institutousiminas.com/wp-content/uploads/2020/08/Literatura-Geral.xlsx',
+'https://www.institutousiminas.com/wp-content/uploads/2020/08/Literatura-Hispano-Americana.xlsx',
+'https://www.institutousiminas.com/wp-content/uploads/2020/08/Literatura-Inglesa.xlsx', 
+'https://www.institutousiminas.com/wp-content/uploads/2020/08/Literatura-Norte-americana.xlsx',
+'https://www.institutousiminas.com/wp-content/uploads/2020/08/Literatura-Outras.xlsx', 
+'https://www.institutousiminas.com/wp-content/uploads/2020/08/Parapsicologia.xlsx',
+'https://www.institutousiminas.com/wp-content/uploads/2020/08/Psicologia-Auto-Ajuda.xlsx',
+'https://www.institutousiminas.com/wp-content/uploads/2020/08/Religiao.xlsx',
+'https://www.institutousiminas.com/wp-content/uploads/2020/08/Sexualidade.xlsx',
+'https://www.institutousiminas.com/wp-content/uploads/2020/08/Sociologia.xlsx']
+
+link2= []
+
 def create_df(link_bs):
     response = requests.get(link_bs, verify=False)
     file_name = link_bs.split('/')[-1]
@@ -38,13 +62,15 @@ def create_df(link_bs):
     df = df.drop_duplicates(subset='ID', keep='last')  # remove linhas duplicadas a partir do id
     return df
 
-def create_general_df(links):
-    general_df = create_df(links[0])
-    for i in range(1, len(links)):
-        general_df = general_df.append(create_df(links[i]))
+def create_general_df(link):
+    general_df = create_df(link[0])
+    for i in range(1, len(link)):
+        general_df = pd.concat([general_df, create_df(link[i])], axis=0, ignore_index=True)
     return general_df
 
-library_df = create_general_df(link)
+library_df = create_general_df(link_geral)
+print(library_df)
+
 if __name__ == '__main__':
     if args.author:
         print(library_df.loc[library_df['AUTHOR'] == args.author])
